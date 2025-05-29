@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login</title>
+  <link rel="prefetch" href="To-Sneha.html">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    #login-box {
+      padding: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+      position: relative;
+      z-index: 2;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 0.6rem;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #357ab8;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      display: none;
+    }
+    /* Loader overlay */
+    #loader-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      visibility: hidden;
+    }
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #4a90e2;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 3500s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader shown during redirect -->
+  <div id="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="login-box">
+    <h2>Login</h2>
+    <div class="error" id="error-msg">Invalid credentials</div>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login-btn">Log In</button>
+  </div>
+
+  <script>
+    const LOGIN = { user: '22BCE9702', pass: 'MS3n1e5h5a' };
+    const loader = document.getElementById('loader-overlay');
+    document.getElementById('login-btn').addEventListener('click', () => {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if (u === LOGIN.user && p === LOGIN.pass) {
+        // Show loader and hide login box
+        loader.style.visibility = 'visible';
+        document.getElementById('login-box').style.visibility = 'hidden';
+        // Redirect immediately; prefetch helps speed up loading
+        window.location.href = 'To-Sneha.html';
+      } else {
+        const err = document.getElementById('error-msg');
+        err.style.display = 'block';
+        setTimeout(() => err.style.display = 'none', 2000);
+      }
+    });
+  </script>
+</body>
+</html>
